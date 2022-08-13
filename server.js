@@ -18,14 +18,14 @@ app.get('/version', (req, res) => {
 app.post('/slack', async (req, res) => {
   res.sendStatus(200)
   const axios = require('axios')
-  await axios.post('https://asa.team/api/slack/ping', {
-    "body": req.body,
-    "headers":req.headers
-  })
+  await axios.post('https://asa.team/api/slack/ping')
 })
 
 app.post('/asaSlack', async (req, res) => {
   res.sendStatus(200)
   const axios = require('axios')
-  await axios.post('https://asa.team/api/slack/asaSlack', req)
+  await axios.post('https://asa.team/api/slack/asaSlack', {
+    "body": req.body,
+    "headers":req
+  })
 })
