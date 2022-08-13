@@ -11,9 +11,13 @@ app.get('/version', (req, res) => {
 })
 
 app.post('/slack', async (req, res) => {
+  const start = new Date().getTime()
+  console.log('Start of slack')
   res.sendStatus(200)
+  console.log('After res send 200', new Date().getTime() - start)
   const axios = require('axios')
   await axios.post('https://asa.team/api/slack/ping')
+  console.log('End of slack', new Date().getTime() - start)
 })
 
 app.listen(port, () => {
