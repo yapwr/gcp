@@ -33,13 +33,16 @@ app.post('/slack', async (req, res) => {
 // Stack overflow soln
 app.post('/asaSlack', async (req, res) => {
   res.sendStatus(200)
+  let err
   const axios = require('axios')
   await axios.post('https://asa.team/api/slack/asaSlack', {"body": req.body} , {
     headers: req.headers
   }).catch((error) => {
-    await axios.post('https://asa.team/api/slack/asaSlack', {
-      error
-    })
+    err = error
+    console.log(error)
+  })
+  await axios.post('https://asa.team/api/slack/asaSlack', {
+    error: err
   })
 })
 
