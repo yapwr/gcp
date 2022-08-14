@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/version', (req, res) => {
-  res.send('v1.4')
+  res.send('v1.5')
 })
 
 // To ping for testing
@@ -34,7 +34,7 @@ app.post('/slack', async (req, res) => {
 app.post('/asaSlack', async (req, res) => {
   res.sendStatus(200)
   const axios = require('axios')
-  await axios.post('https://asa.team/api/slack/asaSlack', req.body, {
+  await axios.post('https://asa.team/api/slack/asaSlack', {"body": req.body} , {
     headers: req.headers
   })
 })
