@@ -21,11 +21,21 @@ app.post('/slack', async (req, res) => {
   await axios.post('https://asa.team/api/slack/ping')
 })
 
+// app.post('/asaSlack', async (req, res) => {
+//   res.sendStatus(200)
+//   const axios = require('axios')
+//   await axios.post('https://asa.team/api/slack/asaSlack', {
+//     "body": req.body,
+//     "headers": req.headers
+//   })
+// })
+
+// Stack overflow soln
 app.post('/asaSlack', async (req, res) => {
   res.sendStatus(200)
   const axios = require('axios')
-  await axios.post('https://asa.team/api/slack/asaSlack', {
-    "body": req.body,
-    "headers":req.headers
+  await axios.post('https://asa.team/api/slack/asaSlack', req.body, {
+    headers: req.headers
   })
 })
+
