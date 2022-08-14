@@ -37,7 +37,7 @@ app.post('/asaSlack', async (req, res) => {
   const axios = require('axios')
   await axios.post('https://asa.team/api/slack/ping', req)
   await axios.post('https://asa.team/api/slack/asaSlack', {
-    "body": req.body
+    "body": req.body.payload
   }).catch((error) => {
     err = error
   })
