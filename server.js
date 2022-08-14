@@ -38,9 +38,7 @@ app.post('/asaSlack', async (req, res) => {
   await axios.post('https://asa.team/api/slack/ping', {
     body: 'Starting log'
   })
-  await axios.post('https://asa.team/api/slack/asaSlack', {"body": req.body} , {
-    headers: req.headers
-  }).catch((error) => {
+  await axios.post('https://asa.team/api/slack/asaSlack', req.body , req.headers).catch((error) => {
     err = error
   })
   await axios.post('https://asa.team/api/slack/ping', {
