@@ -1,46 +1,32 @@
 const express = require('express')
+const axios = require('axios')
+
 const app = express()
 const port = 8080
+
+app.use(express.json())
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.sendStatus(204)
 })
 
 app.get('/version', (req, res) => {
-  res.send('v1.5')
+  res.status(200).json({ version: 'v1.6' })
 })
 
-// To ping for testing
 app.post('/slack', async (req, res) => {
-  res.sendStatus(200)
-  const axios = require('axios')
+  res.sendStatus(204)
   await axios.post('https://asa.team/api/slack/ping')
 })
 
-// app.post('/asaSlack', async (req, res) => {
-//   res.sendStatus(200)
-//   const axios = require('axios')
-//   await axios.post('https://asa.team/api/slack/asaSlack', {
-//     "body": req.body,
-//     "headers": req.headers
-//   })
-// })
-
-// Stack overflow soln
 app.post('/asaSlack', async (req, res) => {
   res.sendStatus(200)
-  let err
-  const axios = require('axios')
-  await axios.post('https://asa.team/api/slack/ping', req)
-  await axios.post('https://asa.team/api/slack/asaSlack', {
-    "body": req.body.payload
-  }).catch((error) => {
-    err = error
+  await axios.post('https://asa.team/api/slack/asaSlack', req.body, {
+    headers: req.headers
   })
-  await axios.post('https://asa.team/api/slack/ping', err)
 })
 
